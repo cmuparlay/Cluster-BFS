@@ -35,8 +35,10 @@ endfunction()
 
 
 add_benchmark_sequential(sequential_BFS)
+add_benchmark_sequential(ligra_BFS)
 add_benchmark_sequential(Akiba_BFS)
 add_benchmark_sequential(cluster_BFS)
+add_benchmark_parallel(ligra_BFS)
 add_benchmark_parallel(cluster_BFS)
 add_benchmark_Radius(cluster_BFS)
 # add_benchmark(Approx_base)

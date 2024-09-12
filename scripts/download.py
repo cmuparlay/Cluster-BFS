@@ -4,12 +4,13 @@ import subprocess
 from graph import graphs
 from graph import website
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-GRAPH_DIR = f"{CURRENT_DIR}/../data/graphs"
+from graph import GRAPH_DIR
 
 
 if __name__ == '__main__':
+  if GRAPH_DIR == "/data/graphs/bin":
+    print("Running on our server. Don't need to download the graphs.")
+    return
   print("Downloading graphs")
   os.makedirs(GRAPH_DIR, exist_ok=True)
   for g in graphs:

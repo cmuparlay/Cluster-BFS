@@ -68,21 +68,16 @@ int main(int argc, char* argv[]) {
 
   parlay::sequence<dist_t> result(G.size());
 
-  printf("Seq_BFS\n");
-  for (size_t i = 0; i<G.size(); i++){result[i]=INF;}
-  seq_BFS<vertex,graph, dist_t>(seeds[0][0], G, result);
-  parlay::internal::timer singleT("Seq_BFS");
-    
-  for (auto seed: seeds){
-    for (auto s: seed){
-      for (size_t i = 0; i<G.size(); i++){result[i]=INF;}
-      seq_BFS<vertex,graph, dist_t>(s,G,result);
-      if (P.getOption("-v")){
-        verifier(s,G,result);
-      }
+  printf("Ligra_BFS\n");
+  // parlay::parallel_for(0, G.size(), [&](size_t i){result[i]=INF;});
+  BFS(seeds[0][0], G,G,result);
+  parlay::internal::timer parallelT("Ligra_BFS");
+  for (auto seed:seeds){
+    for (auto s:seed){
+      BFS(s,G,G,result);
     }
-    singleT.next("");
+    parallelT.next("");
   }
-  printf("Total time for %lu Seq_BFS: %lf\n", ns*k, singleT.total_time());
-  printf("average time for %lu Seq_BFS: %lf\n", k, singleT.total_time()/ns);
+  printf("Total time for %lu Ligra_BFS: %lf\n", ns*k, parallelT.total_time());
+  printf("average time for %lu Seq_BFS: %lf\n", k, parallelT.total_time()/ns);
 }

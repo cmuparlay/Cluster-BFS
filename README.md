@@ -16,8 +16,8 @@ This repository contains code for our paper "Parallel Cluster-BFS and Applicatio
 
 ### Reproducibility
 
-You can simply run `python3 RunAll.py` to reproduce the experiments. If you want to run our server, you can run by `python3 RunnAll.py --ourserver` to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
-#### Step Zero: Download Graphs and Compile
+You can simply run `python3 RunAll.py` to reproduce the experiments. If you want to run our server, you can change the 6th line in `scripts/graph.py` to `GRAPH_DIR="/data/graphs/bin"` to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
+#### Step Zero: Download Graphs and Compile the code
 - Download the all graphs to `./data`
   ``` python3 scripts/download.py```
 These command will download the graphs to `./data/graphs` that are used in this paper. 
@@ -35,9 +35,7 @@ We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs
   
   The executable files:
   - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
-  - cluster_BFS_{w}_{d}: our cluster BFS with word size w and diameter d. If w and d are not specified, the default values are 64 and 2.
-
-
+  - cluster_BFS_{w}_{d}: our cluster BFS with word size w and diameter d. If w and d are not specified, the default values are 64 and 2. If the name is end up with "_seq", it is compiled for sequential setting. 
 
 
 #### Step One: Run Experiments
