@@ -70,9 +70,9 @@ target_link_libraries(parlay INTERFACE Threads::Threads)
 
 message(STATUS "-------------------------------- Library options ------------------------------")
 
-# # -----------------------include Abseil----------------------------
-# # Add the Abseil directory
-# add_subdirectory(include/abseil-cpp)
+# -----------------------include Abseil----------------------------
+# Add the Abseil directory
+add_subdirectory(include/abseil-cpp)
 # -------------------------------------------------------------------
 #                Enable/disable elastic parallelism
 

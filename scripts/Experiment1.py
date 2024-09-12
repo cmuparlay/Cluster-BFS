@@ -3,8 +3,6 @@ from graph import GRAPH_DIR
 import os
 import subprocess
 
-global CURRENT_DIR
-global LOG_DIR
 
 def test_cluster_BFS(test, CURRENT_DIR, LOG_DIR):
   print(f"Testing {test}")

@@ -5,16 +5,24 @@ This repository contains code for our paper "Parallel Cluster-BFS and Applicatio
 
 - Multi-processor linux machine (tested on CentOS 8 and MacOS 13)
 - gcc or clang with C++17 features support (tested with gcc 12 and clang 14)
-- cmake 3.14+ (used to compile)
+- cmake 3.16+ (used to compile)
 - python3 (used to run scripts, version >= 3.7)
   - pandas (used to collect experiment data)
   - numpy (used to collect experiment data)
   - matplotlib (used to draw figures)
   - seaborn (used to draw figures) 
 - We use <a href="https://github.com/cmuparlay/parlaylib">parlaylib</a> for fork-join parallelism. It's provided in our repository `include/parlay`.
+- We use abseil library for hash_map.  It's provided as a submodular in  `include/abseil-cpp`
 
 
 ### Reproducibility
+
+#### Get Started
+Code download: git clone with submodules
+
+```
+git clone --recurse-submodules https://github.com/abseil/abseil-cpp.git
+```
 
 You can simply run `python3 RunAll.py` to reproduce the experiments. If you want to run our server, you can change the 6th line in `scripts/graph.py` to `GRAPH_DIR="/data/graphs/bin"` to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
 #### Step Zero: Download Graphs and Compile the code
@@ -31,7 +39,7 @@ We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs
   ```mkdir build && cd build```
 
   ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
-  
+
   ```cd benchmark && make -j```
   
   

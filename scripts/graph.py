@@ -12,7 +12,7 @@ graphs = [
 "DBLP",
 # "com-youtube",
 # "skitter",
-# "in_2004",
+"in_2004",
 # "soc-LiveJournal1",
 # "hollywood_2009",
 # "socfb-uci-uni",
