@@ -27,6 +27,17 @@ You can also download graphs manually from this link [graphs](https://pasgal-bs.
 We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs).
 
 - Compile the code
+  In the main folder `Cluster-BFS`:
+  ```mkdir build && cd build```
+  ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
+  ```cd benchmark && make -j```
+  
+  
+  The executable files:
+  - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
+  - cluster_BFS_{w}_{d}: our cluster BFS with word size w and diameter d. If w and d are not specified, the default values are 64 and 2.
+
+
 
 
 #### Step One: Run Experiments

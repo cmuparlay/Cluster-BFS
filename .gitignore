@@ -1,2 +1,3 @@
 data/graphs/*
 scripts/__pycache__/*
+build/*
