@@ -3,12 +3,10 @@ from graph import GRAPH_DIR
 import os
 import subprocess
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_DIR= f"{CURRENT_DIR}/../log/exp1"
-os.makedirs(LOG_DIR, exist_ok=True)
+global CURRENT_DIR
+global LOG_DIR
 
-
-def test_cluster_BFS(test):
+def test_cluster_BFS(test, CURRENT_DIR, LOG_DIR):
   print(f"Testing {test}")
   test_file = f"{CURRENT_DIR}/../build/benchmark/{test}"
   OUT_DIR = f"{LOG_DIR}/{test}"
@@ -19,8 +17,13 @@ def test_cluster_BFS(test):
     cmd = f"{numa} {test_file} {GRAPH_DIR}/{g}_sym.bin >> {OUT_DIR}/{g}.txt"
     subprocess.call(cmd, shell=True)
 
-if __name__ == '__main__':
+def experiment1():
+  CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+  LOG_DIR= f"{CURRENT_DIR}/../log/exp1"
+  os.makedirs(LOG_DIR, exist_ok=True)
   tests=["sequential_BFS_seq", "ligra_BFS_seq", "ligra_BFS", "Akiba_BFS_seq", "cluster_BFS", "cluster_BFS_seq"]
   for test in tests:
-    test_cluster_BFS(test)
+    test_cluster_BFS(test, CURRENT_DIR, LOG_DIR)
 
+if __name__ == '__main__':
+  experiment1()

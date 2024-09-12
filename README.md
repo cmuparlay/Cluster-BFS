@@ -29,7 +29,9 @@ We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs
 - Compile the code
   In the main folder `Cluster-BFS`:
   ```mkdir build && cd build```
+
   ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
+  
   ```cd benchmark && make -j```
   
   
