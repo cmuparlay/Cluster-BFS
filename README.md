@@ -24,7 +24,7 @@ Code download: git clone with submodules
 git clone --recurse-submodules https://github.com/abseil/abseil-cpp.git
 ```
 
-You can simply run `python3 RunAll.py` to reproduce the experiments. If you want to run our server, you can change the 6th line in `scripts/graph.py` to `GRAPH_DIR="/data/graphs/bin"` to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
+You can simply run `./scripts/RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
 #### Step Zero: Download Graphs and Compile the code
 - Download the all graphs to `./data`
   ``` python3 scripts/download.py```
@@ -46,6 +46,8 @@ We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs
   The executable files:
   - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
   - cluster_BFS_{w}_{d}: our cluster BFS with word size w and diameter d. If w and d are not specified, the default values are 64 and 2. If the name is end up with "_seq", it is compiled for sequential setting. 
+  - ADO_base: an approximate distance oracle (ADO) choosing a single vertex as a landmark
+  - ADO_cluster_{w}_{d}: a ADO choosing a cluster of vertices as landmarks, where w and d are the size and diameter of clusters.
 
 
 #### Step One: Run Experiments
@@ -92,8 +94,14 @@ It will collect the data in `./log` folder, and generate the `.csv` format files
 It will use the data in `./result` folder to generate figures of `.pdf` format in `./figures`.
 Note that since Figure 1 is essentially a table, it is not in `./figures`. But `Figure1.cvs` is in `./result` folder among with `Table3.csv` and `Table4.csv`
 
-#### Step Four: Show all the results in a PDF file.
+#### Step Four: Show all the results in a report.
+In the main folder `Cluster-BFS` run:
 
+`pdflatex report.tex`
+
+`pdflatex report.tex` (compile twice for references to show up)
+
+`rm report.log report.aux`
 
 #### Our Machine Information
 - CPU: 4x Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz

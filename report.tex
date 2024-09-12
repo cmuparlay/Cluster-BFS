@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage[a4paper, margin=1in]{geometry} % Adjust margins here
+
+\title{AE Report: Parallel Cluster-BFS and Applications to Shortest Paths}
+\author{Letong Wang}
+\date{September 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Experiment 1}
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \input{figs_and_tables/exp1_table.tex}
+  \caption{\small\textbf{
+    Tested graphs and microbenchmarks on different BFS algorithms from a cluster of vertices with size 64. 
+  }
+  The numbers endup with `$\times$' are speedups, higher is better. Others are running time, lower is better. The columns ``AIY'', ``Ligra'' in related work and ``Final'' show the speedup over the ``Seq-BFS''. ``AIY'' is referred to a sequential cluster BFS baseline, ``Ligra'' is referred to parallel single BFS baseline, and ``Final'' is refered to our parallel C-BFS.  The ``self-speedup'' is the speedup running the algorithm in parallel over running it in sequential. 
+  \label{table:microbenchmark}
+  }
+\end{table}
+Table~\ref{table:microbenchmark} is referred to Table 1 in the original paper.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{figs_and_tables/exp1_figure.pdf}
+  \caption{\small\textbf{Speedup of parallel Ligra BFSs and parallel C-BFS over the standard sequential BFS on cluster with size 64.} $y$-axis is the speedup over sequential regular BFS in log-scale, higher is better. Each group of bars represents a graph, except the last group, which represents the average across all graphs. The numbers on the bar are the speedup of parallel algorithms over the standard sequential algorithm.  
+  \label{fig:par_compare}
+  }
+\end{figure} 
+Figure~\ref{fig:par_compare} is referred to Figure 3 in the original paper.
+
+\section{Experiment 2}
+\section{Experiment 3}
+\section{Experiment 4}
+
+
+\end{document}

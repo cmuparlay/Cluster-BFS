@@ -3,3 +3,7 @@ scripts/__pycache__/*
 build/*
 log/*
 include/abseil-cpp/*
+figs_and_tables/*
+report*
+!report.tex
+result/*
