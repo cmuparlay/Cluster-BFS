@@ -35,8 +35,41 @@ Table~\ref{table:microbenchmark} is referred to Table 1 in the original paper.
 Figure~\ref{fig:par_compare} is referred to Figure 3 in the original paper.
 
 \section{Experiment 2}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\columnwidth]{figs_and_tables/exp2_figure.pdf}
+  \caption{\small \textbf{The running time of C-BFS on various cluster diameter $d$.}
+  The $y$-axis shows the relative running time over $d=2$. The $x$-axis shows the cluster diameter $d$. 
+  }
+  \label{fig:ccbfs_d}
+\end{figure} 
+Figure~\ref{fig:ccbfs_d} if referred to Figure 4 in the original paper.
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \input{figs_and_tables/exp2_table.tex}
+  \caption{
+    \small\textbf{The parallel C-BFS time (seconds) for one cluster with size 64 on different cluster diameter $d$.} 
+    \label{table:BFS_d}
+  }
+\end{table}
+Table~\ref{table:BFS_d} is referred to Table 3 in the Appendix. 
+
 \section{Experiment 3}
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{figs_and_tables/exp3_figure.pdf}    \caption{\small \textbf{Tradeoffs between index size and distortion/construction time}
+  The $x$-axis is the memory limits per vertex in bytes, and is in log-scale. The $y$-axis on the left shows the ($1+\epsilon$) distortion.  The $y$-axis on the right shows the preprocessing time. For both preprocessing time and
+  distortion, lower is better. For the algorithms compared here, `plain' is the regular LL, others are the C-BFS-based LL that choose clusters with size $w$ as landmarks.
+  \label{fig:approx}
+  }
+\end{figure} 
+
 \section{Experiment 4}
+
+\section{Experiment 5}
+
 
 
 \end{document}

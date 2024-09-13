@@ -91,10 +91,12 @@ It will collect the data in `./log` folder, and generate the `.csv` format files
 
 
 #### Step Three: Draw Figures / Generate Tables
-It will use the data in `./result` folder to generate figures of `.pdf` format in `./figures`.
-Note that since Figure 1 is essentially a table, it is not in `./figures`. But `Figure1.cvs` is in `./result` folder among with `Table3.csv` and `Table4.csv`
+It will use the data in `./result` folder to generate figures of `.pdf` format and tables in latex `.tex` format in folder `figs_and_tables`.
+
 
 #### Step Four: Show all the results in a report.
+The latex file `report.tex` will generate a report to show the figures and tables in `figs_and_tables`.
+
 In the main folder `Cluster-BFS` run:
 
 `pdflatex report.tex`
