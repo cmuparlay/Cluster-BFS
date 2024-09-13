@@ -24,6 +24,7 @@ Code download: git clone with submodules
 git clone --recurse-submodules https://github.com/cmuparlay/Cluster-BFS.git
 ```
 
+#### Scripts
 You can simply run `./scripts/RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid downloading graphs and using the graphs stored in our server. If you want to run partial of the experiments, you can comments partial commands in `RunAll.sh`.
 
 The script has fours parts:
@@ -37,34 +38,44 @@ The script has fours parts:
     We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs).
 
   - Part 1: Compile the code
+
     In the main folder `Cluster-BFS`:
     ```mkdir build && cd build```
 
     ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
 
     ```cd benchmark && make -j```
-      Explain for the executable files:
+
+    Explain for the executable files:
       - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
       - cluster_BFS_{d}: our cluster BFS with diameter d. If d are not specified, the default values is 2. If the name is end up with "_seq", it is compiled for sequential setting. 
       - ADO_base: an approximate distance oracle (ADO) choosing a single vertex as a landmark
       - ADO_cluster_{w}_{d}: a ADO choosing a cluster of vertices as landmarks, where w and d are the size and diameter of clusters.
   - Part 2: Run Experiments
+
     I catogarize the whole experiments into five experiment sets. I will briefly introduce what they test and their corresponding tables or figures in the paper.
+
     - Experiment 1: 
+
       Testing the running time (in seconds) of all BFS algorithms. It will generate the data listed in `Table 1` and `Figure 3` in the paper.
     - Experiment 2: 
+    
       Testing the running time (in seconds) of C-BFS with different cluster diameter `d`.  
       It will generate the data used in `Figure 4`(in main body of paper) and `Table 3` (in Appendix). 
     - Experiment 3:
+
       Testing the running time and distortion of our Approximate Distance Oracle (ADO) under different cluster size (from 1 to 64) and index size. It will generate the data used in `Figure 5` in the paper.
     - Experiment 4: 
+
       Testing the running time and distortion of our ADO under different cluster size (from 1 to 64) with the same index size limitation (1024 Bytes per vertex). It will generate the data used in `Table 2` in the main body of paper and `Table 5` in the Appendix`.
     - Experiment 5: 
+
       Testing the performance of our ADO with different cluster diameters. It will generate the data listed in `Table 4` in the Appendix.
     
     For each experiment set, the script will first run the test, whose output is stored in the `./log` folder. Then, the script collects required data in `./log` in a `.csv` format and stores in `./result` folder. Finally, the script will draw corresponding figures (in .pdf format) and tables (in .tex format) using the data from `./result`, and store the figures and tables in `./figs_and_tables`. 
 
   - Part 3: Generate Report
+
     The latex file `report.tex` will generate a report to show the figures and tables in `figs_and_tables`.
 
 #### Our Machine Information
