@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Downloading the graphs
+# ######### Part 0: Download the graphs #########
 # If you are using our server, the graph is already in disk. You need to uncomment the 7th line and comment 6th line in scripts/graph.py to change the GRAPH_DIR
 echo "Preparing for Graphs"
 python3 scripts/download.py
 
-# Compile the code
+# ######### Part 1: Compile the code #########
 echo "Compiling"
 mkdir build
 cd build
@@ -13,7 +13,7 @@ cmake  -DCMAKE_BUILD_TYPE=Release ..
 cd benchmark && make -j
 cd ../../
 
-# Run Experiments 1-5
+# ######## Part 2: Run Experiments 1-5 #########
 #----------Experiment 2----------
 echo "Start Experiment2: $(date)"
 python3 scripts/Experiment2.py
@@ -39,7 +39,7 @@ python3 scripts/Experiment1.py
 python3 scripts/draw_exp1_figure.py
 python3 scripts/draw_exp1_table.py
 
-# Generating Report
+# ######## Part 3: Generating Report #########
 echo "Generating Report"
 pdflatex report.tex
 pdflatex report.tex

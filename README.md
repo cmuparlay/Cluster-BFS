@@ -3,16 +3,16 @@ This repository contains code for our paper "Parallel Cluster-BFS and Applicatio
 
 ### Requirements
 
-- Multi-processor linux machine (tested on CentOS 8 and MacOS 13)
+- Multi-processor linux machine (tested on Rocky Linux 8)
 - gcc or clang with C++17 features support (tested with gcc 12 and clang 14)
-- cmake 3.16+ (used to compile)
+- CMake 3.16+ (used to compile)
 - python3 (used to run scripts, version >= 3.7)
   - pandas (used to collect experiment data)
   - numpy (used to collect experiment data)
   - matplotlib (used to draw figures)
   - seaborn (used to draw figures) 
 - We use <a href="https://github.com/cmuparlay/parlaylib">parlaylib</a> for fork-join parallelism. It's provided in our repository `include/parlay`.
-- We use abseil library for hash_map.  It's provided as a submodular in  `include/abseil-cpp`
+- We use <a href="https://github.com/abseil/abseil-cpp.git">abseil</a> library for hash_map.  It's provided as a submodular in  `include/abseil-cpp`
 
 
 ### Reproducibility
@@ -21,89 +21,51 @@ This repository contains code for our paper "Parallel Cluster-BFS and Applicatio
 Code download: git clone with submodules
 
 ```
-git clone --recurse-submodules https://github.com/abseil/abseil-cpp.git
+git clone --recurse-submodules https://github.com/cmuparlay/Cluster-BFS.git
 ```
 
-You can simply run `./scripts/RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid download graphs but using the ones stored in our server. Or you can run scripts step by step as follows.
-#### Step Zero: Download Graphs and Compile the code
-- Download the all graphs to `./data`
-  ``` python3 scripts/download.py```
-These command will download the graphs to `./data/graphs` that are used in this paper. 
+You can simply run `./scripts/RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid downloading graphs and using the graphs stored in our server. If you want to run partial of the experiments, you can comments partial commands in `RunAll.sh`.
 
-You can also download graphs manually from this link [graphs](https://pasgal-bs.cs.ucr.edu/bin/).
+The script has fours parts:
+  - Part 0: Download the graphs
 
-We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs).
+    The downloaded graphs are stored in  `./data/graphs`
+    ``` python3 scripts/download.py```
 
-- Compile the code
-  In the main folder `Cluster-BFS`:
-  ```mkdir build && cd build```
+    You can also download graphs manually from this link [graphs](https://pasgal-bs.cs.ucr.edu/bin/).
 
-  ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
+    We use the `.bin` binary graph format from [GBBS](https://github.com/ParAlg/gbbs).
 
-  ```cd benchmark && make -j```
-  
-  
-  The executable files:
-  - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
-  - cluster_BFS_{w}_{d}: our cluster BFS with word size w and diameter d. If w and d are not specified, the default values are 64 and 2. If the name is end up with "_seq", it is compiled for sequential setting. 
-  - ADO_base: an approximate distance oracle (ADO) choosing a single vertex as a landmark
-  - ADO_cluster_{w}_{d}: a ADO choosing a cluster of vertices as landmarks, where w and d are the size and diameter of clusters.
+  - Part 1: Compile the code
+    In the main folder `Cluster-BFS`:
+    ```mkdir build && cd build```
 
+    ```cmake  -DCMAKE_BUILD_TYPE=Release  ..```
 
-#### Step One: Run Experiments
-The scripts of running experiment are under `./scripts` folder.
-- Experiment 1: Testing the running time (in seconds) of all BFS algorithms. It will generate the data listed in `Table 1` and `Figure 3` in the paper.
+    ```cd benchmark && make -j```
+      Explain for the executable files:
+      - Akiba_BFS_seq: the baseline AIY algorithm's cluster BFS
+      - cluster_BFS_{d}: our cluster BFS with diameter d. If d are not specified, the default values is 2. If the name is end up with "_seq", it is compiled for sequential setting. 
+      - ADO_base: an approximate distance oracle (ADO) choosing a single vertex as a landmark
+      - ADO_cluster_{w}_{d}: a ADO choosing a cluster of vertices as landmarks, where w and d are the size and diameter of clusters.
+  - Part 2: Run Experiments
+    I catogarize the whole experiments into five experiment sets. I will briefly introduce what they test and their corresponding tables or figures in the paper.
+    - Experiment 1: 
+      Testing the running time (in seconds) of all BFS algorithms. It will generate the data listed in `Table 1` and `Figure 3` in the paper.
+    - Experiment 2: 
+      Testing the running time (in seconds) of C-BFS with different cluster diameter `d`.  
+      It will generate the data used in `Figure 4`(in main body of paper) and `Table 3` (in Appendix). 
+    - Experiment 3:
+      Testing the running time and distortion of our Approximate Distance Oracle (ADO) under different cluster size (from 1 to 64) and index size. It will generate the data used in `Figure 5` in the paper.
+    - Experiment 4: 
+      Testing the running time and distortion of our ADO under different cluster size (from 1 to 64) with the same index size limitation (1024 Bytes per vertex). It will generate the data used in `Table 2` in the main body of paper and `Table 5` in the Appendix`.
+    - Experiment 5: 
+      Testing the performance of our ADO with different cluster diameters. It will generate the data listed in `Table 4` in the Appendix.
+    
+    For each experiment set, the script will first run the test, whose output is stored in the `./log` folder. Then, the script collects required data in `./log` in a `.csv` format and stores in `./result` folder. Finally, the script will draw corresponding figures (in .pdf format) and tables (in .tex format) using the data from `./result`, and store the figures and tables in `./figs_and_tables`. 
 
-  ``` python3 scripts/Experiment1.py ```
-  
-  The output files are stored in `./log/exp1`.
-- Experiment 2: Testing the running time (in seconds) of C-BFS with different cluster diameter `d`.  
- It will generate the data used in `Figure 4`(in main body of paper) and `Table 3` (in Appendix). 
-
-  ```python3 scripts/Experiment2.py```
-
-  The output files are stored in `./log/exp2`.
-- Experiment 3: Testing the running time and distortion of our Approximate Distance Oracle (ADO) under different cluster size (from 1 to 64) and index size. It will generate the data used in `Figure 5` in the paper.
-
-  ```python3 scripts/Experiment3.py```
-
-  The output files are stored in `./log/exp3`.
-- Experiment 4: Testing the running time and distortion of our ADO under different cluster size (from 1 to 64) with the same index size limitation (1024 Bytes per vertex). It will generate the data used in `Table 2` in the main body of paper and `Table 5` in the Appendix`.
-
-  ```python3 scripts/Experiment4.py```
-  
-  The output files are stored in `./log/exp4`.
-- Experiment 5:  Testing the performance of our ADO with different cluster diameters. It will generate the data listed in `Table 4` in the Appendix.
-
-  ```python3 scripts/Experiment5.py```
-
-  The output files are stored in `./log/exp5`.
-- Experiment 6: Testing the performance of our Parallel Pruned Landmark Labeling and the sequential baseline algorithm. It will generate the data used in `Table 6` in the Appendix.
-
-  ```python3 scripts/Experiment6.py```
-
-  The output files are stored in `./log/exp6`.
-
-#### Step Two: Collect Data
-It will collect the data in `./log` folder, and generate the `.csv` format files in `./result`
-
-```python3 scripts/data_collection.py```
-
-
-#### Step Three: Draw Figures / Generate Tables
-It will use the data in `./result` folder to generate figures of `.pdf` format and tables in latex `.tex` format in folder `figs_and_tables`.
-
-
-#### Step Four: Show all the results in a report.
-The latex file `report.tex` will generate a report to show the figures and tables in `figs_and_tables`.
-
-In the main folder `Cluster-BFS` run:
-
-`pdflatex report.tex`
-
-`pdflatex report.tex` (compile twice for references to show up)
-
-`rm report.log report.aux`
+  - Part 3: Generate Report
+    The latex file `report.tex` will generate a report to show the figures and tables in `figs_and_tables`.
 
 #### Our Machine Information
 - CPU: 4x Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz
