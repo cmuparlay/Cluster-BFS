@@ -19,7 +19,7 @@
   \caption{\small\textbf{
     Tested graphs and microbenchmarks on different BFS algorithms from a cluster of vertices with size 64. 
   }
-  The numbers endup with `$\times$' are speedups, higher is better. Others are running time, lower is better. The columns ``AIY'', ``Ligra'' in related work and ``Final'' show the speedup over the ``Seq-BFS''. ``AIY'' is referred to a sequential cluster BFS baseline, ``Ligra'' is referred to parallel single BFS baseline, and ``Final'' is refered to our parallel C-BFS.  The ``self-speedup'' is the speedup running the algorithm in parallel over running it in sequential. 
+  The numbers endup with `$\times$' are speedups, higher is better. Others are running time, lower is better. The columns ``AIY'', ``Ligra'' in related work and ``Final'' show the speedup over the ``Seq-BFS''. ``AIY'' is referred to a sequential cluster BFS baseline, ``Ligra'' is referred to parallel single BFS baseline, and ``Final'' is referred to our parallel C-BFS.  The ``self-speedup'' is the speedup running the algorithm in parallel over running it in sequential. 
   \label{table:microbenchmark}
   }
 \end{table}
@@ -66,7 +66,35 @@ Table~\ref{table:BFS_d} is referred to Table 3 in the Appendix.
   }
 \end{figure} 
 
+Figure~\ref{fig:approx} is referred to Figure 5 in the original paper.
+
 \section{Experiment 4}
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \input{figs_and_tables/exp4_small_table.tex}
+  \caption{
+    \small\textbf{The index construction time, (1$+\epsilon$) distortion, and query time for ADO
+    based on landmark labeling.} The ``Plain'' is the plain LL algorithm that each landmark is a single vertex. The ``$w=64$'' and ``$w=8$'' C-BFS-based LL that landmarks are in clusters with size $w$.
+    The memory budget is 1024 bytes per vertex. For both index time and $\epsilon$, lower is better. 
+    \label{table:ApproxLL}
+  }
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \input{figs_and_tables/exp4_full_table.tex}
+  \caption{
+    \small\textbf{The index construction time, (1$+\epsilon$) distortion, and query time for ADO
+    based on landmark labeling.} The ``Plain'' is the normal LL algorithm that each landmark is a single vertex. Others are C-BFS-based LL that landmarks are in clusters with size $w$.
+    The memory budget is 1024 bytes per vertex. For both index time and $\epsilon$, lower is better. 
+    \label{table:ApproxLL_full}
+  }
+\end{table}
+
+Table~\ref{table:ApproxLL_full} if a full version of Table~\ref{table:ApproxLL}.  Table~\ref{table:ApproxLL} is referred to Table 2 in the original paper. Table~\ref{table:ApproxLL_full} is referred to Table 5 in the Appendix.
 
 \section{Experiment 5}
 
