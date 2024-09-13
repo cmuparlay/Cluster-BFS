@@ -1,6 +1,7 @@
 import os
 from Experiment3 import test_ADO
 from graph import graphs
+from data_collection import collect_exp5
 
 def experiment5():
   CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -16,3 +17,7 @@ def experiment5():
 
 if __name__ == '__main__':
   experiment5()
+  CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+  OUT_DIR=f"{CURRENT_DIR}/../result"
+  os.makedirs(OUT_DIR, exist_ok=True)
+  collect_exp5()

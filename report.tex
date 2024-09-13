@@ -19,20 +19,21 @@
   \caption{\small\textbf{
     Tested graphs and microbenchmarks on different BFS algorithms from a cluster of vertices with size 64. 
   }
-  The numbers endup with `$\times$' are speedups, higher is better. Others are running time, lower is better. The columns ``AIY'', ``Ligra'' in related work and ``Final'' show the speedup over the ``Seq-BFS''. ``AIY'' is referred to a sequential cluster BFS baseline, ``Ligra'' is referred to parallel single BFS baseline, and ``Final'' is referred to our parallel C-BFS.  The ``self-speedup'' is the speedup running the algorithm in parallel over running it in sequential. 
+  The numbers endup with `$\times$' are speedups, higher is better. Others are running time, lower is better. The columns ``AIY'', ``Ligra'' in related work and ``Final'' show the speedup over the ``Seq-BFS''. ``AIY'' is referred to a sequential cluster BFS baseline, ``Ligra'' is referred to a parallel single BFS baseline, and ``Final'' is referred to our parallel C-BFS.  The ``self-speedup'' is the speedup running the algorithm in parallel over running it in sequential. 
   \label{table:microbenchmark}
   }
 \end{table}
-Table~\ref{table:microbenchmark} is referred to Table 1 in the original paper.
+Table~\ref{table:microbenchmark} is referred to the `Table 1' in the original paper.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\columnwidth]{figs_and_tables/exp1_figure.pdf}
-  \caption{\small\textbf{Speedup of parallel Ligra BFSs and parallel C-BFS over the standard sequential BFS on cluster with size 64.} $y$-axis is the speedup over sequential regular BFS in log-scale, higher is better. Each group of bars represents a graph, except the last group, which represents the average across all graphs. The numbers on the bar are the speedup of parallel algorithms over the standard sequential algorithm.  
+  \caption{\small\textbf{Speedup of parallel Ligra BFSs and parallel C-BFS over the standard sequential BFS on cluster with size 64.} $y$-axis is the speedup over sequential regular BFS in log-scale, higher is better. Each group of bars represents a graph, except the last group, which represents the average across all graphs. The numbers on the bar are the speedup of corresponding algorithms over the standard sequential algorithm.  
   \label{fig:par_compare}
   }
 \end{figure} 
-Figure~\ref{fig:par_compare} is referred to Figure 3 in the original paper.
+Figure~\ref{fig:par_compare} is referred to the `Figure 3' in the original paper. Essentially, the bars ``AIY'' mean the speedup that can be achieved by applying bit-level par- allelism on a cluster-BFS in the sequential setting. Similarly, the bars ``Ligra'' provide the speedup that can be achieved by applying thread-level parallelism for running $k = 64$ regular (non-cluster) BFS. 
+Our algorithm combines the strengths of both bit-level and thread-level parallelism. Our solution is always better than any of the baselines (``AIY'' or  ``Ligra'').
 
 \section{Experiment 2}
 \begin{figure}[htbp]
@@ -43,7 +44,7 @@ Figure~\ref{fig:par_compare} is referred to Figure 3 in the original paper.
   }
   \label{fig:ccbfs_d}
 \end{figure} 
-Figure~\ref{fig:ccbfs_d} if referred to Figure 4 in the original paper.
+Figure~\ref{fig:ccbfs_d} if referred to the `Figure 4' in the original paper. It tested how $d$ affects the running time of C-BFS.  It shows the running time increases as $d$ grows, especially when $d$ is small. 
 
 \begin{table}[htbp]
   \centering
@@ -54,7 +55,7 @@ Figure~\ref{fig:ccbfs_d} if referred to Figure 4 in the original paper.
     \label{table:BFS_d}
   }
 \end{table}
-Table~\ref{table:BFS_d} is referred to Table 3 in the Appendix. 
+Table~\ref{table:BFS_d} is referred to the `Table 3' in the Appendix. It shows full experiment results of Figure~\ref{fig:ccbfs_d} for all the graphs.
 
 \section{Experiment 3}
 \begin{figure}
@@ -66,7 +67,7 @@ Table~\ref{table:BFS_d} is referred to Table 3 in the Appendix.
   }
 \end{figure} 
 
-Figure~\ref{fig:approx} is referred to Figure 5 in the original paper.
+Figure~\ref{fig:approx} is referred to the `Figure 5' in the original paper. It studied the trade-off between proprocessing time and distortion on three representative graphs. For both preprocessing time and distortion, lower is better.  In general, larger $w$ results in faster preprocessing but larger distortion. 
 
 \section{Experiment 4}
 
@@ -94,8 +95,13 @@ Figure~\ref{fig:approx} is referred to Figure 5 in the original paper.
   }
 \end{table}
 
-Table~\ref{table:ApproxLL_full} if a full version of Table~\ref{table:ApproxLL}.  Table~\ref{table:ApproxLL} is referred to Table 2 in the original paper. Table~\ref{table:ApproxLL_full} is referred to Table 5 in the Appendix.
+Table~\ref{table:ApproxLL_full} if a full version of Table~\ref{table:ApproxLL}.  Table~\ref{table:ApproxLL} is referred to the  `Table 2' in the original paper. Table~\ref{table:ApproxLL_full} is referred to `Table 5' in the Appendix.  
 
+On all 18 tested graphs, C-BFS with $w=64$ always gives a lower running time. When $w=8$, the running time is higher than $w=64$, but still mostly faster than the plain version. 
+
+Regarding distortion, $w=8$ generally gives better accuracy than $w=64$, but it can also be worse in several instances. Both $w=8$ and $w = 64$ are more accurate than the plain version on most of the 18 graphs. 
+
+The Index Time may be different from the paper, but the distortion $\epsilon$ should be the same.  Note that the distortion for graphs FT and SD are a little bit different from the original paper, that's because we use different ground truth (previously choosing 10000 different pairs, now choosing 100000 different pairs.)
 \section{Experiment 5}
 
 \begin{table}[htbp]
@@ -108,6 +114,6 @@ Table~\ref{table:ApproxLL_full} if a full version of Table~\ref{table:ApproxLL}.
   }
 \end{table}
 
-Table~\ref{table:ApproxLL_d} is referred to Table 4 in the original paper. 
+Table~\ref{table:ApproxLL_d} is referred to the `Table 4' in the original paper. It shows with the same memory limits, the construction time is reversely proportional to $d$, since larger $d$ leads to fewer sources and clusters. However, for distortion, other than the graph OK, larger $d$ always leads to lower accuracy.  
 
 \end{document}

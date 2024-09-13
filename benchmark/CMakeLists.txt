@@ -1,4 +1,4 @@
-# Benchmarks for 2hopdistance
+# Benchmarks for Cluster-BFS
 #
 # set(NUMA_COMMAND numactl -i all)
 

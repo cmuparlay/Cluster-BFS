@@ -138,6 +138,6 @@ if __name__ == '__main__':
     os.makedirs(OUT_DIR, exist_ok=True)
     collect_exp1()
     collect_exp2()
-    # collect_exp3()
+    collect_exp3()
     collect_exp4()
     collect_exp5()

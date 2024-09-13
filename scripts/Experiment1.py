@@ -2,6 +2,7 @@ from graph import graphs
 from graph import GRAPH_DIR
 import os
 import subprocess
+from data_collection import collect_exp1
 
 
 def test_cluster_BFS(test, CURRENT_DIR, LOG_DIR):
@@ -25,3 +26,7 @@ def experiment1():
 
 if __name__ == '__main__':
   experiment1()
+  CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+  OUT_DIR=f"{CURRENT_DIR}/../result"
+  os.makedirs(OUT_DIR, exist_ok=True)
+  collect_exp1()

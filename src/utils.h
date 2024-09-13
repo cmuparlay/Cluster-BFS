@@ -19,10 +19,9 @@ read_ground_truth(const std::string& filename){
   auto tokens = parlay::tokens(str, [] (char c) {return c == '\n' || c == ' ';});
   size_t n = parlay::chars_to_long(tokens[0]);
   if (tokens.size() != 3*n+1) {
-    std::cout << "Bad file format, read_graph_from_file expects:\n"
-              << "<n> <m> <degree 0> <degree 1> ... <degree n-1> <edge 0> ... <edge m-1>\n"
-              << "Edges are sorted and each difference encoded with respect to the previous one."
-               << "First per vertex is encoded directly." << std::endl;
+    std::cout << "Bad file format, read_ground_truth expects:\n"
+              << "<n> <u v d> ...\n"
+              << std::endl;
     return ground_truth;
   }
   ground_truth=parlay::sequence<std::pair<std::pair<vertex, vertex>,distance>>(n);

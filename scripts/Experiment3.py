@@ -1,6 +1,7 @@
 from graph import GRAPH_DIR
 import os
 import subprocess
+from collect_data import collect_exp3
 
 def test_ADO(tests, limits, g, CURRENT_DIR, LOG_DIR):
   ground_truth = f"{CURRENT_DIR}/../data/ground_truth/{g}_sym.txt"
@@ -28,3 +29,7 @@ def experiment3():
 
 if __name__ == '__main__':
   experiment3()
+  CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+  OUT_DIR=f"{CURRENT_DIR}/../result"
+  os.makedirs(OUT_DIR, exist_ok=True)
+  collect_exp3()
