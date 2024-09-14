@@ -55,20 +55,20 @@ The script has fours parts:
 
     I catogarize the whole experiments into five experiment sets. I will briefly introduce what they test and their corresponding tables or figures in the paper.
 
-    - Experiment 1: 
+    - Experiment 1 (takes about 30 hours): 
 
       Testing the running time (in seconds) of all BFS algorithms. It will generate the data listed in `Table 1` and `Figure 3` in the paper.
-    - Experiment 2: 
+    - Experiment 2 (takes about 50 minutes): 
     
       Testing the running time (in seconds) of C-BFS with different cluster diameter `d`.  
       It will generate the data used in `Figure 4`(in main body of paper) and `Table 3` (in Appendix). 
-    - Experiment 3:
+    - Experiment 3 (takes about 4 hours):
 
       Testing the running time and distortion of our Approximate Distance Oracle (ADO) under different cluster size (from 1 to 64) and index size. It will generate the data used in `Figure 5` in the paper.
-    - Experiment 4: 
+    - Experiment 4 (takes about 5 hours): 
 
       Testing the running time and distortion of our ADO under different cluster size (from 1 to 64) with the same index size limitation (1024 Bytes per vertex). It will generate the data used in `Table 2` in the main body of paper and `Table 5` in the Appendix`.
-    - Experiment 5: 
+    - Experiment 5 (takes about 3 hours): 
 
       Testing the performance of our ADO with different cluster diameters. It will generate the data listed in `Table 4` in the Appendix.
     

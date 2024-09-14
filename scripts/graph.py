@@ -3,8 +3,8 @@ import os
 website="https://pasgal-bs.cs.ucr.edu/bin/"
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-# GRAPH_DIR = f"{CURRENT_DIR}/../data/graphs"
-GRAPH_DIR = f"/data/graphs/bin"
+GRAPH_DIR = f"{CURRENT_DIR}/../data/graphs"
+# GRAPH_DIR = f"/data/graphs/bin"
 
 graphs = [
 "Epinions1",

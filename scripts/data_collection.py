@@ -49,7 +49,7 @@ def collect_exp2():
     for d in diameters:
         data[d]=[]
         for g in graphs:
-            log_file=f"{LOG_DIR}/cluster_BFS_64_{d}/{g}.txt"
+            log_file=f"{LOG_DIR}/cluster_BFS_{d}/{g}.txt"
             data[d].append(collect_data(log_file,"average cluster BFS time:")[0])
     df = pd.DataFrame.from_dict(data)
     df.to_csv(OUT_FILE, index=False)

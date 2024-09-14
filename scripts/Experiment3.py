@@ -1,7 +1,7 @@
 from graph import GRAPH_DIR
 import os
 import subprocess
-from collect_data import collect_exp3
+from data_collection import collect_exp3
 
 def test_ADO(tests, limits, g, CURRENT_DIR, LOG_DIR):
   ground_truth = f"{CURRENT_DIR}/../data/ground_truth/{g}_sym.txt"
