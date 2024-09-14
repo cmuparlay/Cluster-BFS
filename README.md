@@ -1,6 +1,8 @@
 ## Cluster-BFS
 This repository contains code for our paper "Parallel Cluster-BFS and Applications to Shortest Paths". Letong Wang, Guy Blelloch, Yan Gu and Yihan Sun.
 
+The project is public available on Zenodo: https://doi.org/10.5281/zenodo.13758048
+
 ### Requirements
 
 - Multi-processor linux machine (tested on Rocky Linux 8)
