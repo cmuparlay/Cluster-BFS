@@ -27,7 +27,7 @@ git clone --recurse-submodules https://github.com/cmuparlay/Cluster-BFS.git
 ```
 
 #### Scripts
-You can simply run `./scripts/RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid downloading graphs and using the graphs stored in our server. If you want to run partial of the experiments, you can comments partial commands in `RunAll.sh`.
+You can simply run `sh ./RunAll.sh` to reproduce the experiments. If you want to run our server, you can comment the 6th line in `scripts/graph.py` and uncomment the 7th line to avoid downloading graphs and using the graphs stored in our server. If you want to run partial of the experiments, you can comments partial commands in `RunAll.sh`.
 
 The script has fours parts:
   - Part 0: Download the graphs
