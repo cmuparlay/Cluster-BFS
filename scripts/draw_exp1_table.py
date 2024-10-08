@@ -68,7 +68,9 @@ def draw_table1(df, outfile):
     
     
     #   print(GeoMean)
-    new_df=new_df.append(GeoMean,ignore_index=True)
+    # new_df=new_df.append(GeoMean,ignore_index=True)
+    GeoMean_row = pd.DataFrame([GeoMean])
+    new_df = pd.concat([new_df, GeoMean_row], ignore_index=True)
     #   print(new_df)
 
     multi_index = pd.MultiIndex.from_tuples([

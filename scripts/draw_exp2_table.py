@@ -34,7 +34,9 @@ def draw_table_BFS_d(df,outfile):
   GeoMean['$d=5$']=format_digit(geo_mean(df['5']/10))
   GeoMean['$d=6$']=format_digit(geo_mean(df['6']/10))
 
-  new_df=new_df.append(GeoMean,ignore_index=True)
+#   new_df=new_df.append(GeoMean,ignore_index=True)
+  GeoMean_row = pd.DataFrame([GeoMean])
+  new_df = pd.concat([new_df, GeoMean_row], ignore_index=True)
   with open(outfile,'w') as tf:
     tf.write(new_df.to_latex(index=False, column_format='l|rrrrrr', escape=False))
 if __name__ == '__main__':
